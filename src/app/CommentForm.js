@@ -1,11 +1,11 @@
 import React from 'react';
 
-export default class CommnetForm extends React.Component {
+export default class CommentForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      author: '',
-      text: '',
+      author: props.author,
+      text: props.text,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,8 +28,8 @@ export default class CommnetForm extends React.Component {
     if (!text || !author) {
       return;
     }
-    this.props.onCommentSubmit({ author: author, text: text });
-    this.setState({ author: '', text: '' });
+    this.props.onCommentSubmit({ author, text });
+    this.setState({ author: this.props.author, text: this.props.text });
   }
 
   render() {
@@ -52,3 +52,8 @@ export default class CommnetForm extends React.Component {
     );
   }
 }
+
+CommentForm.propTypes = { author: React.PropTypes.string,
+                          text: React.PropTypes.string,
+                          onCommentSubmit: React.PropTypes.func };
+CommentForm.defaultProps = { author: 'anonymous', text: '' };

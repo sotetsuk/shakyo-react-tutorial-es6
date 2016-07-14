@@ -18,3 +18,6 @@ export default class Comment extends React.Component {
     );
   }
 }
+
+Comment.propTypes = { children: React.PropTypes.string.isRequired,
+                      author: React.PropTypes.string.isRequired };
